@@ -44,8 +44,8 @@ class DustBinInventory extends CustomInventory{
      * @param Player $who
      */
     public function onOpen(Player $who) : void{
+        $this->clearAll();
         $this->vec = $who->floor()->add(0, 5, 0);
-
 
         if (self::$nbtWriter === null) {
             self::$nbtWriter = new NetworkLittleEndianNBTStream();
