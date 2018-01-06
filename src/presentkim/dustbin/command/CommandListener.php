@@ -7,8 +7,8 @@ namespace presentkim\dustbin\command;
 use pocketmine\command\{
   Command, CommandExecutor, CommandSender
 };
+use pocketmine\Player;
 use presentkim\dustbin\DustBinMain as Plugin;
-use presentkim\dustbin\util\Translation;
 
 class CommandListener implements CommandExecutor{
 
@@ -29,7 +29,9 @@ class CommandListener implements CommandExecutor{
      * @return bool
      */
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
-
+        if ($sender instanceof Player) {
+            $sender->addWindow($this->owner->getDustBin($sender));
+        }
         return true;
     }
 }
