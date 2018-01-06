@@ -44,6 +44,8 @@ class DustBinInventory extends CustomInventory{
      * @param Player $who
      */
     public function onOpen(Player $who) : void{
+        BaseInventory::onOpen($who);
+
         $this->vec = $who->floor()->add(0, 5, 0);
 
         if (self::$nbtWriter === null) {
@@ -61,14 +63,14 @@ class DustBinInventory extends CustomInventory{
         $who->sendDataPacket(createBlockEntityDataPacket($this->vec, self::$nbtWriter->write()));
         $who->sendDataPacket(createContainerOpenPacket($this->vec, $who->getWindowId($this), $this->getNetworkType()));
         $this->sendContents($who);
-
-        BaseInventory::onOpen($who);
     }
 
     public function onClose(Player $who) : void{
         BaseInventory::onClose($who);
+        
         $block = $who->getLevel()->getBlock($this->vec);
         $who->sendDataPacket(createUpdateBlockPacket($this->vec, $block->getId(), $block->getDamage()));
+
         $tile = $who->getLevel()->getTile($this->vec);
         if ($tile instanceof Spawnable) {
             $who->sendDataPacket($tile->createSpawnPacket());
