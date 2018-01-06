@@ -34,6 +34,7 @@ class DustBinMain extends PluginBase{
 
             // load utils
             $this->getServer()->getLoader()->loadClass('presentkim\dustbin\util\Utils');
+            $this->getServer()->getLoader()->loadClass('presentkim\dustbin\util\PacketFactory');
         }
     }
 
