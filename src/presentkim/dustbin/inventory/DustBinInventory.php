@@ -32,7 +32,7 @@ class DustBinInventory extends CustomInventory{
 
     /** @return int */
     public function getDefaultSize() : int{
-        return 0xff;
+        return 27;
     }
 
     /** @return int */
