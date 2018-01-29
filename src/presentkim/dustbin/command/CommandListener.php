@@ -8,6 +8,7 @@ use pocketmine\command\{
 };
 
 use presentkim\dustbin\DustBinMain as Plugin;
+use presentkim\dustbin\inventory\DustBinInventory;
 
 class CommandListener implements CommandExecutor{
 
@@ -29,7 +30,10 @@ class CommandListener implements CommandExecutor{
      */
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
         if ($sender instanceof Player) {
-            $sender->addWindow($this->owner->getDustBin($sender));
+            if (!isset(DustBinInventory::$bins[$playerName = $sender->getLowerCaseName()])) {
+                DustBinInventory::$bins[$playerName] = new DustBinInventory();
+            }
+            $sender->addWindow(DustBinInventory::$bins[$playerName]);
         }
         return true;
     }
