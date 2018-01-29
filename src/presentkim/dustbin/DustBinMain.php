@@ -90,7 +90,12 @@ class DustBinMain extends PluginBase{
         $this->commands[] = $command;
     }
 
-    public function getDustbin(Player $player){
+    /**
+     * @param Player $player
+     *
+     * @return DustBinInventory
+     */
+    public function getDustbin(Player $player) : DustBinInventory{
         $playerName = $player->getName();
         if (!isset($this->bins[$playerName])) {
             $this->bins[$playerName] = new DustBinInventory($player);
