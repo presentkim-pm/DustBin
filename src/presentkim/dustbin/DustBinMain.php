@@ -55,30 +55,15 @@ class DustBinMain extends PluginBase{
         }
         $this->commands = [];
 
-        // register commands
-        $this->registerCommand(new CommandListener($this), Translation::translate('command-dustbin'), 'DustBin', 'dustbin.cmd', Translation::translate('command-dustbin@description'), Translation::translate('command-dustbin@usage'), Translation::getArray('command-dustbin@aliases'));
-    }
-
-    /**
-     * @param CommandExecutor $executor
-     * @param                 $name
-     * @param                 $fallback
-     * @param                 $permission
-     * @param string          $description
-     * @param null            $usageMessage
-     * @param array|null      $aliases
-     */
-    private function registerCommand(CommandExecutor $executor, $name, $fallback, $permission, $description = "", $usageMessage = null, array $aliases = null) : void{
-        $command = new PluginCommand($name, $this);
-        $command->setExecutor($executor);
-        $command->setPermission($permission);
-        $command->setDescription($description);
-        $command->setUsage($usageMessage ?? ('/' . $name));
-        if (is_array($aliases)) {
+        $command = new PluginCommand(Translation::translate('command-dustbin'), $this);
+        $command->setExecutor(new CommandListener($this));
+        $command->setPermission('dustbin.cmd');
+        $command->setDescription(Translation::translate('command-dustbin@description'));
+        $command->setUsage(Translation::translate('command-dustbin@usage'));
+        if (is_array($aliases = Translation::getArray('command-dustbin@aliases'))) {
             $command->setAliases($aliases);
         }
-
-        $this->getServer()->getCommandMap()->register($fallback, $command);
+        $this->getServer()->getCommandMap()->register('dustbin', $command);
         $this->commands[] = $command;
     }
 
