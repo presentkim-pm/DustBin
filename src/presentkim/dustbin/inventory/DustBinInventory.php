@@ -3,6 +3,7 @@
 namespace presentkim\dustbin\inventory;
 
 use pocketmine\block\Block;
+use pocketmine\math\Vector3;
 use pocketmine\Player;
 use pocketmine\inventory\{
   BaseInventory, CustomInventory
@@ -27,11 +28,8 @@ class DustBinInventory extends CustomInventory{
     /** CompoundTag */
     private $nbt;
 
-    /** Vector3 */
-    private $vec;
-
-    public function __construct(Player $player){
-        parent::__construct($player, [], $this->getDefaultSize(), null);
+    public function __construct(){
+        parent::__construct(new Vector3(), [], $this->getDefaultSize(), null);
 
         $this->nbt = new CompoundTag('', [
           new StringTag('id', 'Chest'),
@@ -48,27 +46,27 @@ class DustBinInventory extends CustomInventory{
     public function onOpen(Player $who) : void{
         BaseInventory::onOpen($who);
 
-        $this->vec = $who->floor()->add(0, 5, 0);
+        $this->holder = $who->floor()->add(0, 5, 0);
 
         $pk = new UpdateBlockPacket();
         $pk->blockId = Block::CHEST;
         $pk->blockData = 0;
-        $pk->x = $this->vec->x;
-        $pk->y = $this->vec->y;
-        $pk->z = $this->vec->z;
+        $pk->x = $this->holder->x;
+        $pk->y = $this->holder->y;
+        $pk->z = $this->holder->z;
         $who->sendDataPacket($pk);
 
 
-        $this->nbt->setInt('x', $this->vec->x);
-        $this->nbt->setInt('y', $this->vec->y);
-        $this->nbt->setInt('z', $this->vec->z);
+        $this->nbt->setInt('x', $this->holder->x);
+        $this->nbt->setInt('y', $this->holder->y);
+        $this->nbt->setInt('z', $this->holder->z);
         $this->nbt->setString('CustomName', Translation::translate('dustbin-name'));
         self::$nbtWriter->setData($this->nbt);
 
         $pk = new BlockEntityDataPacket();
-        $pk->x = $this->vec->x;
-        $pk->y = $this->vec->y;
-        $pk->z = $this->vec->z;
+        $pk->x = $this->holder->x;
+        $pk->y = $this->holder->y;
+        $pk->z = $this->holder->z;
         $pk->namedtag = self::$nbtWriter->write();
         $who->sendDataPacket($pk);
 
@@ -76,9 +74,9 @@ class DustBinInventory extends CustomInventory{
         $pk = new ContainerOpenPacket();
         $pk->type = WindowTypes::CONTAINER;
         $pk->entityUniqueId = -1;
-        $pk->x = $this->vec->x;
-        $pk->y = $this->vec->y;
-        $pk->z = $this->vec->z;
+        $pk->x = $this->holder->x;
+        $pk->y = $this->holder->y;
+        $pk->z = $this->holder->z;
         $pk->windowId = $who->getWindowId($this);
         $who->sendDataPacket($pk);
 
@@ -88,17 +86,17 @@ class DustBinInventory extends CustomInventory{
     public function onClose(Player $who) : void{
         BaseInventory::onClose($who);
 
-        $block = $who->getLevel()->getBlock($this->vec);
+        $block = $who->getLevel()->getBlock($this->holder);
 
         $pk = new UpdateBlockPacket();
-        $pk->x = $this->vec->x;
-        $pk->y = $this->vec->y;
-        $pk->z = $this->vec->z;
+        $pk->x = $this->holder->x;
+        $pk->y = $this->holder->y;
+        $pk->z = $this->holder->z;
         $pk->blockId = $block->getId();
         $pk->blockData = $block->getDamage();
         $who->sendDataPacket($pk);
 
-        $tile = $who->getLevel()->getTile($this->vec);
+        $tile = $who->getLevel()->getTile($this->holder);
         if ($tile instanceof Spawnable) {
             $who->sendDataPacket($tile->createSpawnPacket());
         }
