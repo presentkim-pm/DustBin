@@ -10,7 +10,7 @@ use pocketmine\inventory\{
 };
 use pocketmine\nbt\NetworkLittleEndianNBTStream;
 use pocketmine\nbt\tag\{
-  CompoundTag, IntTag, StringTag
+  CompoundTag, StringTag
 };
 use pocketmine\network\mcpe\protocol\{
   UpdateBlockPacket, BlockEntityDataPacket, ContainerOpenPacket
