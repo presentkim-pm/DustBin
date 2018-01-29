@@ -29,15 +29,12 @@ class DustBinMain extends PluginBase{
 
     public function onLoad() : void{
         if (self::$instance === null) {
-            // register instance
             self::$instance = $this;
         }
     }
 
     public function onEnable() : void{
         $this->load();
-
-        // register event listeners
         $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener(), $this);
     }
 
@@ -57,7 +54,6 @@ class DustBinMain extends PluginBase{
             Translation::load($langfilename);
         }
 
-        // unregister commands
         foreach ($this->commands as $command) {
             $this->getServer()->getCommandMap()->unregister($command);
         }
