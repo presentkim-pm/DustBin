@@ -46,7 +46,10 @@ class DustBinInventory extends CustomInventory{
     public function onOpen(Player $who) : void{
         BaseInventory::onOpen($who);
 
-        $this->holder = $who->floor()->add(0, 5, 0);
+        $this->holder = $who->subtract(0, 3, 0)->floor();
+        if ($this->holder->y < 0) {
+            $this->holder->y = 0;
+        }
 
         $pk = new UpdateBlockPacket();
         $pk->blockId = Block::CHEST;
