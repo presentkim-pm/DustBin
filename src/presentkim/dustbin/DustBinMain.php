@@ -8,7 +8,7 @@ use pocketmine\command\{
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use presentkim\dustbin\{
-  inventory\DustBinInventory, listener\PlayerEventListener, command\CommandListener, util\Translation
+  inventory\DustBinInventory, command\CommandListener, util\Translation
 };
 
 class DustBinMain extends PluginBase{
@@ -35,7 +35,6 @@ class DustBinMain extends PluginBase{
 
     public function onEnable() : void{
         $this->load();
-        $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener(), $this);
     }
 
     public function load() : void{
