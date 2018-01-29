@@ -25,6 +25,9 @@ class DustBinInventory extends CustomInventory{
     /** @var NetworkLittleEndianNBTStream|null */
     private static $nbtWriter = null;
 
+    /** @var  self[] */
+    public static  $bins = [];
+
     /** CompoundTag */
     private $nbt;
 
