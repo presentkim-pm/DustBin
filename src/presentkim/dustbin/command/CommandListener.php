@@ -1,7 +1,5 @@
 <?php
 
-namespace presentkim\dustbin\command\subcommands;
-
 namespace presentkim\dustbin\command;
 
 use pocketmine\command\{
