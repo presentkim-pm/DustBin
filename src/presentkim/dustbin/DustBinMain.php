@@ -41,21 +41,18 @@ class DustBinMain extends PluginBase{
         $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener(), $this);
     }
 
-    public function onDisable() : void{
-        $this->save();
-    }
-
     public function load() : void{
         $dataFolder = $this->getDataFolder();
         if (!file_exists($dataFolder)) {
             mkdir($dataFolder, 0777, true);
         }
 
-        // load lang
         $langfilename = $dataFolder . 'lang.yml';
         if (!file_exists($langfilename)) {
-            Translation::loadFromResource($this->getResource('lang/eng.yml'));
-            Translation::save($langfilename);
+            $resource = $this->getResource('lang/eng.yml');
+            fwrite($fp = fopen("{$dataFolder}lang.yml", "wb"), $contents = stream_get_contents($resource));
+            fclose($fp);
+            Translation::loadFromContents($contents);
         } else {
             Translation::load($langfilename);
         }
@@ -68,22 +65,6 @@ class DustBinMain extends PluginBase{
 
         // register commands
         $this->registerCommand(new CommandListener($this), Translation::translate('command-dustbin'), 'DustBin', 'dustbin.cmd', Translation::translate('command-dustbin@description'), Translation::translate('command-dustbin@usage'), Translation::getArray('command-dustbin@aliases'));
-    }
-
-    public function save() : void{
-        $dataFolder = $this->getDataFolder();
-        if (!file_exists($dataFolder)) {
-            mkdir($dataFolder, 0777, true);
-        }
-
-        // save lang
-        $langfilename = $dataFolder . 'lang.yml';
-        if (!file_exists($langfilename)) {
-            Translation::loadFromResource($this->getResource('lang/eng.yml'));
-            Translation::save($langfilename);
-        } else {
-            Translation::load($langfilename);
-        }
     }
 
     /**
