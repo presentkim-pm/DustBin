@@ -2,14 +2,15 @@
 
 namespace presentkim\dustbin;
 
+use pocketmine\Player;
 use pocketmine\command\{
   CommandExecutor, PluginCommand
 };
-use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
-use presentkim\dustbin\{
-  inventory\DustBinInventory, command\CommandListener, util\Translation
-};
+
+use presentkim\dustbin\command\CommandListener;
+use presentkim\dustbin\inventory\DustBinInventory;
+use presentkim\dustbin\util\Translation;
 
 class DustBinMain extends PluginBase{
 

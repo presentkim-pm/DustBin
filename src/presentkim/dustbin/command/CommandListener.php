@@ -2,10 +2,11 @@
 
 namespace presentkim\dustbin\command;
 
+use pocketmine\Player;
 use pocketmine\command\{
   Command, CommandExecutor, CommandSender
 };
-use pocketmine\Player;
+
 use presentkim\dustbin\DustBinMain as Plugin;
 
 class CommandListener implements CommandExecutor{

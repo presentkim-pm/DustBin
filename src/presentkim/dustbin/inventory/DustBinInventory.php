@@ -3,6 +3,7 @@
 namespace presentkim\dustbin\inventory;
 
 use pocketmine\block\Block;
+use pocketmine\Player;
 use pocketmine\inventory\{
   BaseInventory, CustomInventory
 };
@@ -10,11 +11,10 @@ use pocketmine\nbt\NetworkLittleEndianNBTStream;
 use pocketmine\nbt\tag\{
   CompoundTag, IntTag, StringTag
 };
-use pocketmine\network\mcpe\protocol\BlockEntityDataPacket;
-use pocketmine\network\mcpe\protocol\ContainerOpenPacket;
+use pocketmine\network\mcpe\protocol\{
+  UpdateBlockPacket, BlockEntityDataPacket, ContainerOpenPacket
+};
 use pocketmine\network\mcpe\protocol\types\WindowTypes;
-use pocketmine\network\mcpe\protocol\UpdateBlockPacket;
-use pocketmine\Player;
 use pocketmine\tile\Spawnable;
 
 class DustBinInventory extends CustomInventory{
