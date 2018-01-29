@@ -25,21 +25,6 @@ class DustBinInventory extends CustomInventory{
     /** Vector3 */
     private $vec;
 
-    /** @return string */
-    public function getName() : string{
-        return "DustBin";
-    }
-
-    /** @return int */
-    public function getDefaultSize() : int{
-        return 27;
-    }
-
-    /** @return int */
-    public function getNetworkType() : int{
-        return WindowTypes::CONTAINER;
-    }
-
     /**
      * @param Player $who
      */
@@ -105,5 +90,20 @@ class DustBinInventory extends CustomInventory{
             $who->sendDataPacket($tile->createSpawnPacket());
         }
         $this->clearAll();
+    }
+
+    /** @return string */
+    public function getName() : string{
+        return "DustBin";
+    }
+
+    /** @return int */
+    public function getDefaultSize() : int{
+        return 27;
+    }
+
+    /** @return int */
+    public function getNetworkType() : int{
+        return WindowTypes::CONTAINER;
     }
 }
