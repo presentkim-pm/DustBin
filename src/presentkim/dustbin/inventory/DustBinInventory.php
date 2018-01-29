@@ -17,6 +17,8 @@ use pocketmine\network\mcpe\protocol\{
 use pocketmine\network\mcpe\protocol\types\WindowTypes;
 use pocketmine\tile\Spawnable;
 
+use presentkim\dustbin\util\Translation;
+
 class DustBinInventory extends CustomInventory{
 
     /** @var NetworkLittleEndianNBTStream|null */
@@ -41,7 +43,7 @@ class DustBinInventory extends CustomInventory{
           new IntTag("x", $this->vec->x),
           new IntTag("y", $this->vec->y),
           new IntTag("z", $this->vec->z),
-          new StringTag("CustomName", "DustBin"),
+          new StringTag("CustomName", Translation::translate('dustbin-name')),
         ]));
 
         $pk = new UpdateBlockPacket();
