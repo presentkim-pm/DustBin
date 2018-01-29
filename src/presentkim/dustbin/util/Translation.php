@@ -34,11 +34,12 @@ class Translation{
         }
     }
 
-    /** @param resource $resource */
-    public static function loadFromResource($resource) : void{
-        if (is_resource($resource)) {
-            self::$lang = yaml_parse(stream_get_contents($resource));
-        }
+    /**
+     * @param resource $resource
+     * @param bool     $default
+     */
+    public static function loadFromResource($resource, bool $default = false) : void{
+        self::loadFromContents(stream_get_contents($resource), $default);
     }
 
     /**
