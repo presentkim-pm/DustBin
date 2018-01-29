@@ -17,16 +17,16 @@ class DustBinMain extends PluginBase{
     /** @var self */
     private static $instance = null;
 
+    /** @return self */
+    public static function getInstance() : self{
+        return self::$instance;
+    }
+
     /** @var PluginCommand[] */
     private $commands = [];
 
     /** @var DustBinInventory[] DustBinInventory[string] */
     private $bins = [];
-
-    /** @return self */
-    public static function getInstance() : self{
-        return self::$instance;
-    }
 
     public function onLoad() : void{
         if (self::$instance === null) {
