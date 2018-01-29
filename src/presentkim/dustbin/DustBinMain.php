@@ -2,14 +2,10 @@
 
 namespace presentkim\dustbin;
 
-use pocketmine\Player;
-use pocketmine\command\{
-  CommandExecutor, PluginCommand
-};
+use pocketmine\command\PluginCommand;
 use pocketmine\plugin\PluginBase;
 
 use presentkim\dustbin\command\CommandListener;
-use presentkim\dustbin\inventory\DustBinInventory;
 use presentkim\dustbin\util\Translation;
 
 class DustBinMain extends PluginBase{
@@ -24,9 +20,6 @@ class DustBinMain extends PluginBase{
 
     /** @var PluginCommand */
     private $command = null;
-
-    /** @var DustBinInventory[] DustBinInventory[string] */
-    private $bins = [];
 
     public function onLoad() : void{
         if (self::$instance === null) {
@@ -63,18 +56,5 @@ class DustBinMain extends PluginBase{
             $this->command->setAliases($aliases);
         }
         $this->getServer()->getCommandMap()->register('dustbin', $this->command);
-    }
-
-    /**
-     * @param Player $player
-     *
-     * @return DustBinInventory
-     */
-    public function getDustbin(Player $player) : DustBinInventory{
-        $playerName = $player->getName();
-        if (!isset($this->bins[$playerName])) {
-            $this->bins[$playerName] = new DustBinInventory();
-        }
-        return $this->bins[$playerName];
     }
 }
