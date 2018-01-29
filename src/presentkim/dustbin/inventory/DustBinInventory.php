@@ -13,9 +13,7 @@ use pocketmine\nbt\tag\{
 use pocketmine\network\mcpe\protocol\types\WindowTypes;
 use pocketmine\Player;
 use pocketmine\tile\Spawnable;
-use function presentkim\dustbin\util\{
-  createUpdateBlockPacket, createContainerOpenPacket, createBlockEntityDataPacket
-};
+use presentkim\dustbin\util\PacketFactory;
 
 class DustBinInventory extends CustomInventory{
 
@@ -59,17 +57,17 @@ class DustBinInventory extends CustomInventory{
           new StringTag("CustomName", "DustBin"),
         ]));
 
-        $who->sendDataPacket(createUpdateBlockPacket($this->vec, Block::CHEST));
-        $who->sendDataPacket(createBlockEntityDataPacket($this->vec, self::$nbtWriter->write()));
-        $who->sendDataPacket(createContainerOpenPacket($this->vec, $who->getWindowId($this), $this->getNetworkType()));
+        $who->sendDataPacket(PacketFactory::createUpdateBlockPacket($this->vec, Block::CHEST));
+        $who->sendDataPacket(PacketFactory::createBlockEntityDataPacket($this->vec, self::$nbtWriter->write()));
+        $who->sendDataPacket(PacketFactory::createContainerOpenPacket($this->vec, $who->getWindowId($this), $this->getNetworkType()));
         $this->sendContents($who);
     }
 
     public function onClose(Player $who) : void{
         BaseInventory::onClose($who);
-        
+
         $block = $who->getLevel()->getBlock($this->vec);
-        $who->sendDataPacket(createUpdateBlockPacket($this->vec, $block->getId(), $block->getDamage()));
+        $who->sendDataPacket(PacketFactory::createUpdateBlockPacket($this->vec, $block->getId(), $block->getDamage()));
 
         $tile = $who->getLevel()->getTile($this->vec);
         if ($tile instanceof Spawnable) {

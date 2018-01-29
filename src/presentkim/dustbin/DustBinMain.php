@@ -31,10 +31,6 @@ class DustBinMain extends PluginBase{
         if (self::$instance === null) {
             // register instance
             self::$instance = $this;
-
-            // load utils
-            $this->getServer()->getLoader()->loadClass('presentkim\dustbin\util\Utils');
-            $this->getServer()->getLoader()->loadClass('presentkim\dustbin\util\PacketFactory');
         }
     }
 
