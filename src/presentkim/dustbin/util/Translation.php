@@ -10,9 +10,16 @@ class Translation{
     /** @var string[string] */
     private static $default = [];
 
-    /** @param string $filename */
-    public static function load(string $filename) : void{
-        self::$lang = yaml_parse_file($filename);
+    /**
+     * @param string $filename
+     * @param bool   $default
+     */
+    public static function load(string $filename, bool $default = false) : void{
+        if ($default) {
+            self::$default = yaml_parse_file($filename);
+        } else {
+            self::$lang = yaml_parse_file($filename);
+        }
     }
 
     /** @param resource $resource */
