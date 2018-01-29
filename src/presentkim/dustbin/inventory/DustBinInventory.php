@@ -10,10 +10,12 @@ use pocketmine\nbt\NetworkLittleEndianNBTStream;
 use pocketmine\nbt\tag\{
   CompoundTag, IntTag, StringTag
 };
+use pocketmine\network\mcpe\protocol\BlockEntityDataPacket;
+use pocketmine\network\mcpe\protocol\ContainerOpenPacket;
 use pocketmine\network\mcpe\protocol\types\WindowTypes;
+use pocketmine\network\mcpe\protocol\UpdateBlockPacket;
 use pocketmine\Player;
 use pocketmine\tile\Spawnable;
-use presentkim\dustbin\util\PacketFactory;
 
 class DustBinInventory extends CustomInventory{
 
@@ -57,9 +59,31 @@ class DustBinInventory extends CustomInventory{
           new StringTag("CustomName", "DustBin"),
         ]));
 
-        $who->sendDataPacket(PacketFactory::createUpdateBlockPacket($this->vec, Block::CHEST));
-        $who->sendDataPacket(PacketFactory::createBlockEntityDataPacket($this->vec, self::$nbtWriter->write()));
-        $who->sendDataPacket(PacketFactory::createContainerOpenPacket($this->vec, $who->getWindowId($this), $this->getNetworkType()));
+        $pk = new UpdateBlockPacket();
+        $pk->blockId = Block::CHEST;
+        $pk->blockData = 0;
+        $pk->x = $this->vec->x;
+        $pk->y = $this->vec->y;
+        $pk->z = $this->vec->z;
+        $who->sendDataPacket($pk);
+
+        $pk = new BlockEntityDataPacket();
+        $pk->x = $this->vec->x;
+        $pk->y = $this->vec->y;
+        $pk->z = $this->vec->z;
+        $pk->namedtag = self::$nbtWriter->write();
+        $who->sendDataPacket($pk);
+
+
+        $pk = new ContainerOpenPacket();
+        $pk->type = WindowTypes::CONTAINER;
+        $pk->entityUniqueId = -1;
+        $pk->x = $this->vec->x;
+        $pk->y = $this->vec->y;
+        $pk->z = $this->vec->z;
+        $pk->windowId = $who->getWindowId($this);
+        $who->sendDataPacket($pk);
+
         $this->sendContents($who);
     }
 
@@ -67,7 +91,14 @@ class DustBinInventory extends CustomInventory{
         BaseInventory::onClose($who);
 
         $block = $who->getLevel()->getBlock($this->vec);
-        $who->sendDataPacket(PacketFactory::createUpdateBlockPacket($this->vec, $block->getId(), $block->getDamage()));
+
+        $pk = new UpdateBlockPacket();
+        $pk->x = $this->vec->x;
+        $pk->y = $this->vec->y;
+        $pk->z = $this->vec->z;
+        $pk->blockId = $block->getId();
+        $pk->blockData = $block->getDamage();
+        $who->sendDataPacket($pk);
 
         $tile = $who->getLevel()->getTile($this->vec);
         if ($tile instanceof Spawnable) {
