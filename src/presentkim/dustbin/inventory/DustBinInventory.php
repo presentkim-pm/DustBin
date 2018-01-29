@@ -24,8 +24,23 @@ class DustBinInventory extends CustomInventory{
     /** @var NetworkLittleEndianNBTStream|null */
     private static $nbtWriter = null;
 
+    /** CompoundTag */
+    private $nbt;
+
     /** Vector3 */
     private $vec;
+
+    public function __construct(Player $player){
+        parent::__construct($player, [], $this->getDefaultSize(), null);
+
+        $this->nbt = new CompoundTag('', [
+          new StringTag('id', 'Chest'),
+        ]);
+
+        if (self::$nbtWriter === null) {
+            self::$nbtWriter = new NetworkLittleEndianNBTStream();
+        }
+    }
 
     /**
      * @param Player $who
@@ -35,17 +50,6 @@ class DustBinInventory extends CustomInventory{
 
         $this->vec = $who->floor()->add(0, 5, 0);
 
-        if (self::$nbtWriter === null) {
-            self::$nbtWriter = new NetworkLittleEndianNBTStream();
-        }
-        self::$nbtWriter->setData(new CompoundTag("", [
-          new StringTag("id", "Chest"),
-          new IntTag("x", $this->vec->x),
-          new IntTag("y", $this->vec->y),
-          new IntTag("z", $this->vec->z),
-          new StringTag("CustomName", Translation::translate('dustbin-name')),
-        ]));
-
         $pk = new UpdateBlockPacket();
         $pk->blockId = Block::CHEST;
         $pk->blockData = 0;
@@ -53,6 +57,13 @@ class DustBinInventory extends CustomInventory{
         $pk->y = $this->vec->y;
         $pk->z = $this->vec->z;
         $who->sendDataPacket($pk);
+
+
+        $this->nbt->setInt('x', $this->vec->x);
+        $this->nbt->setInt('y', $this->vec->y);
+        $this->nbt->setInt('z', $this->vec->z);
+        $this->nbt->setString('CustomName', Translation::translate('dustbin-name'));
+        self::$nbtWriter->setData($this->nbt);
 
         $pk = new BlockEntityDataPacket();
         $pk->x = $this->vec->x;
