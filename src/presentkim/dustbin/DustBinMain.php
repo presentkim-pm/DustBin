@@ -22,8 +22,8 @@ class DustBinMain extends PluginBase{
         return self::$instance;
     }
 
-    /** @var PluginCommand[] */
-    private $commands = [];
+    /** @var PluginCommand */
+    private $command = null;
 
     /** @var DustBinInventory[] DustBinInventory[string] */
     private $bins = [];
@@ -50,21 +50,19 @@ class DustBinMain extends PluginBase{
             Translation::load($langfilename);
         }
 
-        foreach ($this->commands as $command) {
-            $this->getServer()->getCommandMap()->unregister($command);
+        if ($this->command !== null) {
+            $this->getServer()->getCommandMap()->unregister($this->command);
         }
-        $this->commands = [];
 
-        $command = new PluginCommand(Translation::translate('command-dustbin'), $this);
-        $command->setExecutor(new CommandListener($this));
-        $command->setPermission('dustbin.cmd');
-        $command->setDescription(Translation::translate('command-dustbin@description'));
-        $command->setUsage(Translation::translate('command-dustbin@usage'));
+        $this->command = new PluginCommand(Translation::translate('command-dustbin'), $this);
+        $this->command->setExecutor(new CommandListener($this));
+        $this->command->setPermission('dustbin.cmd');
+        $this->command->setDescription(Translation::translate('command-dustbin@description'));
+        $this->command->setUsage(Translation::translate('command-dustbin@usage'));
         if (is_array($aliases = Translation::getArray('command-dustbin@aliases'))) {
-            $command->setAliases($aliases);
+            $this->command->setAliases($aliases);
         }
-        $this->getServer()->getCommandMap()->register('dustbin', $command);
-        $this->commands[] = $command;
+        $this->getServer()->getCommandMap()->register('dustbin', $this->command);
     }
 
     /**
