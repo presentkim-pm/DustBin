@@ -35,10 +35,6 @@ class DustBinMain extends PluginBase{
     }
 
     public function onEnable() : void{
-        $this->load();
-    }
-
-    public function load() : void{
         $dataFolder = $this->getDataFolder();
         if (!file_exists($dataFolder)) {
             mkdir($dataFolder, 0777, true);
