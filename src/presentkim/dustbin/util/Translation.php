@@ -2,6 +2,8 @@
 
 namespace presentkim\dustbin\util;
 
+use presentkim\dustbin\DustBinMain as Plugin;
+
 class Translation{
 
     /** @var string[string] */
@@ -65,16 +67,22 @@ class Translation{
     public static function translate(string $strId, string ...$params) : string{
         if (isset(self::$lang[$strId])) {
             $value = self::$lang[$strId];
-            if (is_array($value)) {
-                $value = $value[array_rand($value)];
-            }
-            if (is_string($value)) {
-                return empty($params) ? $value : strtr($value, Utils::listToPairs($params));
-            } else {
-                return "$strId is not string";
-            }
+        } elseif (isset(self::$default[$strId])) {
+            Plugin::getInstance()->getLogger()->debug("get $strId from default");
+            $value = self::$default[$strId];
+        } else {
+            Plugin::getInstance()->getLogger()->critical("get $strId failed");
+            return "Undefined strId : $strId";
         }
-        return "Undefined \$strId : $strId";
+
+        if (is_array($value)) {
+            $value = $value[array_rand($value)];
+        }
+        if (is_string($value)) {
+            return empty($params) ? $value : strtr($value, Utils::listToPairs($params));
+        } else {
+            return "$strId is not string";
+        }
     }
 
     /**
@@ -85,8 +93,13 @@ class Translation{
     public static function getArray(string $strId) : ?array{
         if (isset(self::$lang[$strId])) {
             $value = self::$lang[$strId];
-            return is_array($value) ? $value : null;
+        } elseif (isset(self::$default[$strId])) {
+            Plugin::getInstance()->getLogger()->debug("get $strId from default");
+            $value = self::$default[$strId];
+        } else {
+            Plugin::getInstance()->getLogger()->critical("get $strId failed");
+            return null;
         }
-        return null;
+        return is_array($value) ? $value : null;
     }
 }
