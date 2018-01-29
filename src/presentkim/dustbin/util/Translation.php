@@ -22,6 +22,18 @@ class Translation{
         }
     }
 
+    /**
+     * @param string $contents
+     * @param bool   $default
+     */
+    public static function loadFromContents(string $contents, bool $default = false) : void{
+        if ($default) {
+            self::$default = yaml_parse($contents);
+        } else {
+            self::$lang = yaml_parse($contents);
+        }
+    }
+
     /** @param resource $resource */
     public static function loadFromResource($resource) : void{
         if (is_resource($resource)) {
