@@ -4,7 +4,6 @@ namespace presentkim\dustbin;
 
 use pocketmine\command\PluginCommand;
 use pocketmine\plugin\PluginBase;
-
 use presentkim\dustbin\command\CommandListener;
 use presentkim\dustbin\util\Translation;
 
