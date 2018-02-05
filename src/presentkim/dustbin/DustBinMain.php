@@ -56,4 +56,18 @@ class DustBinMain extends PluginBase{
         }
         $this->getServer()->getCommandMap()->register('dustbin', $this->command);
     }
+
+    /**
+     * @param string $name = ''
+     *
+     * @return PluginCommand
+     */
+    public function getCommand(string $name = '') : PluginCommand{
+        return $this->command;
+    }
+
+    /** @param PluginCommand $command */
+    public function setCommand(PluginCommand $command) : void{
+        $this->command = $command;
+    }
 }
