@@ -7,7 +7,7 @@ use pocketmine\plugin\PluginBase;
 use presentkim\dustbin\command\CommandListener;
 use presentkim\dustbin\util\Translation;
 
-class DustBinMain extends PluginBase{
+class DustBin extends PluginBase{
 
     /** @var self */
     private static $instance = null;

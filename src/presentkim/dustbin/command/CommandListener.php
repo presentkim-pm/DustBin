@@ -6,7 +6,7 @@ use pocketmine\Player;
 use pocketmine\command\{
   Command, CommandExecutor, CommandSender
 };
-use presentkim\dustbin\DustBinMain as Plugin;
+use presentkim\dustbin\DustBin as Plugin;
 use presentkim\dustbin\inventory\DustBinInventory;
 
 class CommandListener implements CommandExecutor{

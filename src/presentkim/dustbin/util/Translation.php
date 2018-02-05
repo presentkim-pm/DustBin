@@ -2,7 +2,7 @@
 
 namespace presentkim\dustbin\util;
 
-use presentkim\dustbin\DustBinMain as Plugin;
+use presentkim\dustbin\DustBin as Plugin;
 
 class Translation{
 
