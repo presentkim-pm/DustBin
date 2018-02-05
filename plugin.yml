@@ -4,6 +4,8 @@ main:             presentkim\dustbin\DustBinMain
 version:          1.1.1
 api:              [3.0.0, 3.0.0-ALPHA10, 3.0.0-ALPHA11]
 author:           PresentKim
+website:          https://github.com/PMMPPlugin/DustBin
+description:      A plugin add dustbin
 
 permissions:
   dustbin.cmd:
