@@ -36,3 +36,6 @@ A plugin add dustbin for PocketMine-MP
 - \[Changed\] translation method
 - \[Changed\] Change many code to optimize
 - \[Fixed\]  Remove useless codes
+### v1.1.1 [![Source](https://img.shields.io/badge/source-v1.1.1-blue.png?label=source)](https://github.com/PMMPPlugin/DustBin/tree/v1.1.1) [![Release](https://img.shields.io/github/downloads/PMMPPlugin/DustBin/v1.1.1/total.png?label=download&colorB=1fadad)](https://github.com/PMMPPlugin/DustBin/releases/v1.1.1)
+- \[Added\] Add PluginCommand getter and setter
+- \[Fixed\] Add api 3.0.0-ALPHA11
