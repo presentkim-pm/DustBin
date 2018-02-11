@@ -1,5 +1,4 @@
-[![Telegram](https://img.shields.io/badge/Telegram-PresentKim-blue.svg?logo=telegram)](https://t.me/PresentKim)
-# DustBin
+### DustBin
 [![icon/192x192](meta/icon/192x192.png?raw=true)]()
 
 [![License](https://img.shields.io/github/license/PMMPPlugin/DustBin.svg?label=License)](LICENSE)
