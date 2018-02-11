@@ -22,34 +22,3 @@ A plugin add dustbin for PocketMine-MP
 | permission  | default | description  |
 | ----------- | ------- | ------------ |
 | dustbin.cmd | OP      | main command |
-
-
-
-
-## ChangeLog
-### v1.0.0 [![Source](https://img.shields.io/badge/source-v1.0.0-blue.png?label=source)](https://github.com/PMMPPlugin/DustBin/tree/v1.0.0) [![Release](https://img.shields.io/github/downloads/PMMPPlugin/DustBin/v1.0.0/total.png?label=download&colorB=1fadad)](https://github.com/PMMPPlugin/DustBin/releases/v1.0.0)
-- First release
-  
-  
----
-### v1.0.1 [![Source](https://img.shields.io/badge/source-v1.0.1-blue.png?label=source)](https://github.com/PMMPPlugin/DustBin/tree/v1.0.1) [![Release](https://img.shields.io/github/downloads/PMMPPlugin/DustBin/v1.0.1/total.png?label=download&colorB=1fadad)](https://github.com/PMMPPlugin/DustBin/releases/v1.0.1)
-- Clear when closing the dustbin.
-  - before: Clear when open
-  
-  
----
-### v1.1.0 [![Source](https://img.shields.io/badge/source-v1.0.2-blue.png?label=source)](https://github.com/PMMPPlugin/DustBin/tree/v1.1.0) [![Release](https://img.shields.io/github/downloads/PMMPPlugin/DustBin/v1.1.0/total.png?label=download&colorB=1fadad)](https://github.com/PMMPPlugin/DustBin/releases/v1.1.0)
-- Change lang file save method
-- Code optimize
-  
-  
----
-### v1.1.1 [![Source](https://img.shields.io/badge/source-v1.1.1-blue.png?label=source)](https://github.com/PMMPPlugin/DustBin/tree/v1.1.1) [![Release](https://img.shields.io/github/downloads/PMMPPlugin/DustBin/v1.1.1/total.png?label=download&colorB=1fadad)](https://github.com/PMMPPlugin/DustBin/releases/v1.1.1)
-- Add api 3.0.0-ALPHA11
-- DustBinMain : Add PluginCommand getter&setter
-  
-  
----
-### v1.1.2 [![Source](https://img.shields.io/badge/source-v1.1.2-blue.png?label=source)](https://github.com/PMMPPlugin/DustBin/tree/v1.1.2) [![Release](https://img.shields.io/github/downloads/PMMPPlugin/DustBin/v1.1.2/total.png?label=download&colorB=1fadad)](https://github.com/PMMPPlugin/DustBin/releases/v1.1.2)
-- DustBinMain : Rename to DustBin
-- Add website and description to plugin.yml
