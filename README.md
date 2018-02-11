@@ -12,4 +12,4 @@
 <br/><br/>
   
 ## Demo
-![demo](meta/screenshot/demo.gif?raw=true)]
+![demo](meta/screenshot/demo.gif?raw=true)
