@@ -33,24 +33,23 @@ A plugin add dustbin for PocketMine-MP
   
 ---
 ### v1.0.1 [![Source](https://img.shields.io/badge/source-v1.0.1-blue.png?label=source)](https://github.com/PMMPPlugin/DustBin/tree/v1.0.1) [![Release](https://img.shields.io/github/downloads/PMMPPlugin/DustBin/v1.0.1/total.png?label=download&colorB=1fadad)](https://github.com/PMMPPlugin/DustBin/releases/v1.0.1)
-- \[Fixed\] DustBinInventory : Clear dustbin at close
+- Clear when closing the dustbin.
+  - before: Clear when open
   
   
 ---
 ### v1.1.0 [![Source](https://img.shields.io/badge/source-v1.0.2-blue.png?label=source)](https://github.com/PMMPPlugin/DustBin/tree/v1.1.0) [![Release](https://img.shields.io/github/downloads/PMMPPlugin/DustBin/v1.1.0/total.png?label=download&colorB=1fadad)](https://github.com/PMMPPlugin/DustBin/releases/v1.1.0)
-- \[Fixed\] Violation of PSR-0
-- \[Changed\] translation method
-- \[Changed\] Change many code to optimize
-- \[Fixed\]  Remove useless codes
+- Change lang file save method
+- Code optimize
   
   
 ---
 ### v1.1.1 [![Source](https://img.shields.io/badge/source-v1.1.1-blue.png?label=source)](https://github.com/PMMPPlugin/DustBin/tree/v1.1.1) [![Release](https://img.shields.io/github/downloads/PMMPPlugin/DustBin/v1.1.1/total.png?label=download&colorB=1fadad)](https://github.com/PMMPPlugin/DustBin/releases/v1.1.1)
-- \[Added\] Add PluginCommand getter and setter
-- \[Fixed\] Add api 3.0.0-ALPHA11
+- Add api 3.0.0-ALPHA11
+- DustBinMain : Add PluginCommand getter&setter
   
   
 ---
 ### v1.1.2 [![Source](https://img.shields.io/badge/source-v1.1.2-blue.png?label=source)](https://github.com/PMMPPlugin/DustBin/tree/v1.1.2) [![Release](https://img.shields.io/github/downloads/PMMPPlugin/DustBin/v1.1.2/total.png?label=download&colorB=1fadad)](https://github.com/PMMPPlugin/DustBin/releases/v1.1.2)
-- \[Changed\] Rename main class to DustBin
-- \[Added\] Add website and description
+- DustBinMain : Rename to DustBin
+- Add website and description to plugin.yml
