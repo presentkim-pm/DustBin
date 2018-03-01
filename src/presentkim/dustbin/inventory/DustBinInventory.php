@@ -22,10 +22,7 @@ use presentkim\dustbin\util\Translation;
 
 class DustBinInventory extends CustomInventory{
 
-    /** @var NetworkLittleEndianNBTStream|null */
-    private static $nbtWriter = null;
-
-    /** @var  self[] */
+    /** @var DustBinInventory[] */
     public static $bins = [];
 
     /** CompoundTag */
@@ -37,10 +34,6 @@ class DustBinInventory extends CustomInventory{
         $this->nbt = new CompoundTag('', [
           new StringTag('id', 'Chest'),
         ]);
-
-        if (self::$nbtWriter === null) {
-            self::$nbtWriter = new NetworkLittleEndianNBTStream();
-        }
     }
 
     /**
@@ -72,7 +65,7 @@ class DustBinInventory extends CustomInventory{
         $pk->x = $this->holder->x;
         $pk->y = $this->holder->y;
         $pk->z = $this->holder->z;
-        $pk->namedtag = self::$nbtWriter->write($this->nbt);
+        $pk->namedtag = (new NetworkLittleEndianNBTStream())->write($this->nbt);
         $who->sendDataPacket($pk);
 
 
