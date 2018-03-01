@@ -7,7 +7,7 @@
 ## Command
 | name    | description  | permission       |
 | :-----: | :----------: | :--------------: |
-| dustbin | Open dustbin | `OP` dustbin.cmd |
+| dustbin | Open dustbin | `USER` dustbin.cmd |
   
 <br/><br/>
   
