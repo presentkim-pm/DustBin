@@ -5,8 +5,8 @@
 <br/><br/>
   
 ## Command
-| name    | description  | permission       |
-| :-----: | :----------: | :--------------: |
+| name    | description  | permission         |
+| :-----: | :----------: | :----------------: |
 | dustbin | Open dustbin | `USER` dustbin.cmd |
   
 <br/><br/>
