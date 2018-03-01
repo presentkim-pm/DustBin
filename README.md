@@ -12,7 +12,7 @@
 <br/><br/>
   
 ## Required API
-- PocketMine-MP : higher than [Build #635](https://jenkins.pmmp.io/job/PocketMine-MP/635)
+- PocketMine-MP : higher than [Build #745](https://jenkins.pmmp.io/job/PocketMine-MP/745)
   
 <br/><br/>
   
