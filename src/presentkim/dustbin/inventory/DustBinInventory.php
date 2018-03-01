@@ -26,7 +26,7 @@ class DustBinInventory extends CustomInventory{
     private static $nbtWriter = null;
 
     /** @var  self[] */
-    public static  $bins = [];
+    public static $bins = [];
 
     /** CompoundTag */
     private $nbt;
@@ -67,13 +67,12 @@ class DustBinInventory extends CustomInventory{
         $this->nbt->setInt('y', $this->holder->y);
         $this->nbt->setInt('z', $this->holder->z);
         $this->nbt->setString('CustomName', Translation::translate('dustbin-name'));
-        self::$nbtWriter->setData($this->nbt);
 
         $pk = new BlockEntityDataPacket();
         $pk->x = $this->holder->x;
         $pk->y = $this->holder->y;
         $pk->z = $this->holder->z;
-        $pk->namedtag = self::$nbtWriter->write();
+        $pk->namedtag = self::$nbtWriter->write($this->nbt);
         $who->sendDataPacket($pk);
 
 
