@@ -9,11 +9,11 @@ use presentkim\dustbin\util\Translation;
 
 class DustBin extends PluginBase{
 
-    /** @var self */
+    /** @var DustBin */
     private static $instance = null;
 
-    /** @return self */
-    public static function getInstance() : self{
+    /** @return DustBin */
+    public static function getInstance() : DustBin{
         return self::$instance;
     }
 
