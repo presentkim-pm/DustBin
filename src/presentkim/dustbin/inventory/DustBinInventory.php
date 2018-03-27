@@ -17,8 +17,7 @@ use pocketmine\network\mcpe\protocol\{
 };
 use pocketmine\network\mcpe\protocol\types\WindowTypes;
 use pocketmine\tile\Spawnable;
-
-use presentkim\dustbin\util\Translation;
+use presentkim\dustbin\DustBin;
 
 class DustBinInventory extends CustomInventory{
 
@@ -33,6 +32,7 @@ class DustBinInventory extends CustomInventory{
 
         $this->nbt = new CompoundTag('', [
           new StringTag('id', 'Chest'),
+          new StringTag('CustomName', DustBin::getInstance()->getLanguage()->translate('dustbin.name')),
         ]);
     }
 
@@ -59,7 +59,6 @@ class DustBinInventory extends CustomInventory{
         $this->nbt->setInt('x', $this->holder->x);
         $this->nbt->setInt('y', $this->holder->y);
         $this->nbt->setInt('z', $this->holder->z);
-        $this->nbt->setString('CustomName', Translation::translate('dustbin-name'));
 
         $pk = new BlockEntityDataPacket();
         $pk->x = $this->holder->x;
@@ -80,7 +79,6 @@ class DustBinInventory extends CustomInventory{
 
         $this->sendContents($who);
     }
-
 
     /**
      * @param Player $who
