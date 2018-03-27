@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace blugin\dustbin\inventory;
 
 use pocketmine\block\Block;
