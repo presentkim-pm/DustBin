@@ -7,7 +7,6 @@ use pocketmine\command\{
   Command, PluginCommand, CommandExecutor, CommandSender
 };
 use pocketmine\plugin\PluginBase;
-use blugin\dustbin\command\CommandListener;
 use blugin\dustbin\inventory\DustBinInventory;
 use blugin\dustbin\lang\PluginLang;
 
