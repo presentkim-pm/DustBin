@@ -2,12 +2,16 @@
 
 namespace presentkim\dustbin;
 
-use pocketmine\command\PluginCommand;
+use pocketmine\Player;
+use pocketmine\command\{
+  Command, PluginCommand, CommandExecutor, CommandSender
+};
 use pocketmine\plugin\PluginBase;
 use presentkim\dustbin\command\CommandListener;
+use presentkim\dustbin\inventory\DustBinInventory;
 use presentkim\dustbin\lang\PluginLang;
 
-class DustBin extends PluginBase{
+class DustBin extends PluginBase implements CommandExecutor{
 
     /** @var DustBin */
     private static $instance = null;
@@ -39,9 +43,7 @@ class DustBin extends PluginBase{
         if ($this->command !== null) {
             $this->getServer()->getCommandMap()->unregister($this->command);
         }
-
         $this->command = new PluginCommand($this->language->translate('commands.dustbin'), $this);
-        $this->command->setExecutor(new CommandListener($this));
         $this->command->setPermission('dustbin.cmd');
         $this->command->setDescription($this->language->translate('commands.dustbin.description'));
         $this->command->setUsage($this->language->translate('commands.dustbin.usage'));
@@ -49,6 +51,24 @@ class DustBin extends PluginBase{
             $this->command->setAliases($aliases);
         }
         $this->getServer()->getCommandMap()->register('dustbin', $this->command);
+    }
+
+    /**
+     * @param CommandSender $sender
+     * @param Command       $command
+     * @param string        $label
+     * @param string[]      $args
+     *
+     * @return bool
+     */
+    public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
+        if ($sender instanceof Player) {
+            if (!isset(DustBinInventory::$bins[$playerName = $sender->getLowerCaseName()])) {
+                DustBinInventory::$bins[$playerName] = new DustBinInventory();
+            }
+            $sender->addWindow(DustBinInventory::$bins[$playerName]);
+        }
+        return true;
     }
 
     /**
