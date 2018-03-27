@@ -67,6 +67,8 @@ class DustBin extends PluginBase implements CommandExecutor{
                 DustBinInventory::$bins[$playerName] = new DustBinInventory();
             }
             $sender->addWindow(DustBinInventory::$bins[$playerName]);
+        } else {
+            $sender->sendMessage($this->language->translate('commands.generic.onlyPlayer'));
         }
         return true;
     }
