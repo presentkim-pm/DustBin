@@ -5,7 +5,7 @@ namespace presentkim\dustbin;
 use pocketmine\command\PluginCommand;
 use pocketmine\plugin\PluginBase;
 use presentkim\dustbin\command\CommandListener;
-use presentkim\dustbin\util\Translation;
+use presentkim\dustbin\lang\PluginLang;
 
 class DustBin extends PluginBase{
 
@@ -20,6 +20,9 @@ class DustBin extends PluginBase{
     /** @var PluginCommand */
     private $command = null;
 
+    /** @var PluginLang */
+    private $language;
+
     public function onLoad() : void{
         if (self::$instance === null) {
             self::$instance = $this;
@@ -31,27 +34,18 @@ class DustBin extends PluginBase{
         if (!file_exists($dataFolder)) {
             mkdir($dataFolder, 0777, true);
         }
-
-        $langfilename = $dataFolder . 'lang.yml';
-        if (!file_exists($langfilename)) {
-            $resource = $this->getResource('lang/eng.yml');
-            fwrite($fp = fopen("{$dataFolder}lang.yml", "wb"), $contents = stream_get_contents($resource));
-            fclose($fp);
-            Translation::loadFromContents($contents);
-        } else {
-            Translation::load($langfilename);
-        }
+        $this->language = new PluginLang($this);
 
         if ($this->command !== null) {
             $this->getServer()->getCommandMap()->unregister($this->command);
         }
 
-        $this->command = new PluginCommand(Translation::translate('command-dustbin'), $this);
+        $this->command = new PluginCommand($this->language->translate('commands.dustbin'), $this);
         $this->command->setExecutor(new CommandListener($this));
         $this->command->setPermission('dustbin.cmd');
-        $this->command->setDescription(Translation::translate('command-dustbin@description'));
-        $this->command->setUsage(Translation::translate('command-dustbin@usage'));
-        if (is_array($aliases = Translation::getArray('command-dustbin@aliases'))) {
+        $this->command->setDescription($this->language->translate('commands.dustbin.description'));
+        $this->command->setUsage($this->language->translate('commands.dustbin.usage'));
+        if (is_array($aliases = $this->language->getArray('commands.dustbin.aliases'))) {
             $this->command->setAliases($aliases);
         }
         $this->getServer()->getCommandMap()->register('dustbin', $this->command);
@@ -69,5 +63,24 @@ class DustBin extends PluginBase{
     /** @param PluginCommand $command */
     public function setCommand(PluginCommand $command) : void{
         $this->command = $command;
+    }
+
+    /**
+     * @return PluginLang
+     */
+    public function getLanguage() : PluginLang{
+        return $this->language;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSourceFolder() : string{
+        $pharPath = \Phar::running();
+        if (empty($pharPath)) {
+            return dirname(__FILE__, 4) . DIRECTORY_SEPARATOR;
+        } else {
+            return $pharPath . DIRECTORY_SEPARATOR;
+        }
     }
 }

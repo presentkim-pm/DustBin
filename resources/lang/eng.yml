@@ -1,8 +1,0 @@
----
-dustbin-name: "DustBin"
-
-command-dustbin: "dustbin"
-command-dustbin@usage: "/DustBin"
-command-dustbin@description: "Main command of DustBin"
-command-dustbin@aliases: ["db"]
-...
