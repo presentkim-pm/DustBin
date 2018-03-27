@@ -1,6 +1,6 @@
 <?php
 
-namespace presentkim\dustbin\inventory;
+namespace blugin\dustbin\inventory;
 
 use pocketmine\block\Block;
 use pocketmine\math\Vector3;
@@ -17,7 +17,7 @@ use pocketmine\network\mcpe\protocol\{
 };
 use pocketmine\network\mcpe\protocol\types\WindowTypes;
 use pocketmine\tile\Spawnable;
-use presentkim\dustbin\DustBin;
+use blugin\dustbin\DustBin;
 
 class DustBinInventory extends CustomInventory{
 

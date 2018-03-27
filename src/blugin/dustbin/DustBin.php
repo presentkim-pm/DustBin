@@ -1,15 +1,15 @@
 <?php
 
-namespace presentkim\dustbin;
+namespace blugin\dustbin;
 
 use pocketmine\Player;
 use pocketmine\command\{
   Command, PluginCommand, CommandExecutor, CommandSender
 };
 use pocketmine\plugin\PluginBase;
-use presentkim\dustbin\command\CommandListener;
-use presentkim\dustbin\inventory\DustBinInventory;
-use presentkim\dustbin\lang\PluginLang;
+use blugin\dustbin\command\CommandListener;
+use blugin\dustbin\inventory\DustBinInventory;
+use blugin\dustbin\lang\PluginLang;
 
 class DustBin extends PluginBase implements CommandExecutor{
 
