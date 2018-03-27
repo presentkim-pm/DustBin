@@ -21,9 +21,6 @@ use presentkim\dustbin\DustBin;
 
 class DustBinInventory extends CustomInventory{
 
-    /** @var DustBinInventory[] */
-    public static $bins = [];
-
     /** CompoundTag */
     private $nbt;
 

@@ -63,10 +63,7 @@ class DustBin extends PluginBase implements CommandExecutor{
      */
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
         if ($sender instanceof Player) {
-            if (!isset(DustBinInventory::$bins[$playerName = $sender->getLowerCaseName()])) {
-                DustBinInventory::$bins[$playerName] = new DustBinInventory();
-            }
-            $sender->addWindow(DustBinInventory::$bins[$playerName]);
+            $sender->addWindow(new DustBinInventory());
         } else {
             $sender->sendMessage($this->language->translate('commands.generic.onlyPlayer'));
         }
