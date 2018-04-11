@@ -17,4 +17,4 @@
 <br/><br/>
   
 ## Demo
-![demo](meta/screenshot/demo.gif?raw=true)
+![demo](assets/screenshot/demo.gif?raw=true)
