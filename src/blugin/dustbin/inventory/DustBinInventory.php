@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace blugin\dustbin\inventory;
 
-use pocketmine\block\Block;
+use pocketmine\block\{
+  Block, BlockFactory
+};
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 use pocketmine\inventory\{
@@ -47,11 +49,11 @@ class DustBinInventory extends CustomInventory{
         }
 
         $pk = new UpdateBlockPacket();
-        $pk->blockId = Block::CHEST;
-        $pk->blockData = 0;
+        $pk->blockRuntimeId = BlockFactory::toStaticRuntimeId(Block::CHEST);
         $pk->x = $this->holder->x;
         $pk->y = $this->holder->y;
         $pk->z = $this->holder->z;
+        $pk->flags = UpdateBlockPacket::FLAG_NONE;
         $who->sendDataPacket($pk);
 
 
@@ -91,8 +93,8 @@ class DustBinInventory extends CustomInventory{
         $pk->x = $this->holder->x;
         $pk->y = $this->holder->y;
         $pk->z = $this->holder->z;
-        $pk->blockId = $block->getId();
-        $pk->blockData = $block->getDamage();
+        $pk->blockRuntimeId = BlockFactory::toStaticRuntimeId($block->getId(), $block->getDamage());
+        $pk->flags = UpdateBlockPacket::FLAG_NONE;
         $who->sendDataPacket($pk);
 
         $tile = $who->getLevel()->getTile($this->holder);
