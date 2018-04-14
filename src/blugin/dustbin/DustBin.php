@@ -78,11 +78,6 @@ class DustBin extends PluginBase implements CommandExecutor{
         return $this->command;
     }
 
-    /** @param PluginCommand $command */
-    public function setCommand(PluginCommand $command) : void{
-        $this->command = $command;
-    }
-
     /**
      * @return PluginLang
      */
