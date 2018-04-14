@@ -29,9 +29,7 @@ class DustBin extends PluginBase implements CommandExecutor{
     private $language;
 
     public function onLoad() : void{
-        if (self::$instance === null) {
-            self::$instance = $this;
-        }
+        self::$instance = $this;
     }
 
     public function onEnable() : void{
