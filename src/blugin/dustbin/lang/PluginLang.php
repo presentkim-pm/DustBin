@@ -28,17 +28,18 @@ class PluginLang{
     public function __construct(DustBin $plugin){
         $this->plugin = $plugin;
 
-        $fallbackLangFile = "{$plugin->getSourceFolder()}resources/lang/eng.ini";
+        $fallbackLangResource = "{$plugin->getSourceFolder()}resources/lang/eng.ini";
         $dataFolder = $plugin->getDataFolder();
         $langFile = "{$dataFolder}lang.ini";
+        $langResource = "{$plugin->getSourceFolder()}resources/lang/{$plugin->getServer()->getLanguage()->getLang()}.ini";
         if (!file_exists($langFile)) {
             if (!file_exists($dataFolder)) {
                 mkdir($dataFolder, 0777, true);
             }
-            copy($fallbackLangFile, $langFile);
+            copy(file_exists($langResource) ? $langResource : $fallbackLangResource, $langFile);
         }
         $this->lang = $this->loadLang($langFile);
-        $this->fallbackLang = $this->loadLang($fallbackLangFile);
+        $this->fallbackLang = $this->loadLang($fallbackLangResource);
     }
 
     /**
