@@ -1,6 +1,6 @@
-# DustBin [![license](https://img.shields.io/github/license/Blugin/DustBin.svg?label=License)](LICENSE)
+# DustBin [![license](https://img.shields.io/github/license/Blugin/DustBin-PMMP.svg?label=License)](LICENSE)
 [![icon](assets/icon/192x192.png?raw=true)]()  
-[![release](https://img.shields.io/github/release/Blugin/DustBin.svg?label=Release) ![download](https://img.shields.io/github/downloads/Blugin/DustBin/total.svg?label=Download)](https://github.com/Blugin/DustBin/releases/latest)
+[![release](https://img.shields.io/github/release/Blugin/DustBin-PMMP.svg?label=Release) ![download](https://img.shields.io/github/downloads/Blugin/DustBin-PMMP/total.svg?label=Download)](https://github.com/Blugin/DustBin-PMMP/releases/latest)
   
 <br/><br/>
   
