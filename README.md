@@ -15,7 +15,7 @@ A plugin add dustbin for PocketMine-MP
 <br/><br/>
   
 ## Required API
-- PocketMine-MP : higher than [Build #745](https://jenkins.pmmp.io/job/PocketMine-MP/745)
+- PocketMine-MP : higher than [Build #937](https://jenkins.pmmp.io/job/PocketMine-MP/937)
   
 <br/><br/>
   
