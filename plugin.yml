@@ -1,10 +1,10 @@
 ---
 name:             DustBin
-main:             blugin\dustbin\DustBin
+main:             kim\present\dustbin\DustBin
 version:          1.1.4
 api:              [3.0.0, 3.0.0-ALPHA12]
 author:           PresentKim
-website:          https://github.com/Blugin/DustBin-PMMP
+website:          https://github.com/PresentKim/DustBin-PMMP
 description:      A plugin add dustbin
 
 permissions:

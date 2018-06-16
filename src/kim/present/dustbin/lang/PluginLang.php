@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace blugin\dustbin\lang;
+namespace kim\present\dustbin\lang;
 
-use blugin\dustbin\DustBin;
+use kim\present\dustbin\DustBin;
 
 class PluginLang{
 
