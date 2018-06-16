@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace blugin\dustbin\inventory;
+namespace kim\present\dustbin\inventory;
 
 use pocketmine\block\{
   Block, BlockFactory
@@ -21,7 +21,7 @@ use pocketmine\network\mcpe\protocol\{
 };
 use pocketmine\network\mcpe\protocol\types\WindowTypes;
 use pocketmine\tile\Spawnable;
-use blugin\dustbin\DustBin;
+use kim\present\dustbin\DustBin;
 
 class DustBinInventory extends CustomInventory{
 

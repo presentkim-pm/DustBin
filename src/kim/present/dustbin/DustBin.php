@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace blugin\dustbin;
+namespace kim\present\dustbin;
 
 use pocketmine\Player;
 use pocketmine\command\{
   Command, PluginCommand, CommandExecutor, CommandSender
 };
 use pocketmine\plugin\PluginBase;
-use blugin\dustbin\inventory\DustBinInventory;
-use blugin\dustbin\lang\PluginLang;
+use kim\present\dustbin\inventory\DustBinInventory;
+use kim\present\dustbin\lang\PluginLang;
 
 class DustBin extends PluginBase implements CommandExecutor{
 
