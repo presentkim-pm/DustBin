@@ -6,6 +6,7 @@ namespace kim\present\dustbin;
 
 use kim\present\dustbin\inventory\DustBinInventory;
 use kim\present\dustbin\lang\PluginLang;
+use kim\present\dustbin\task\CheckUpdateAsyncTask;
 use pocketmine\command\{
 	Command, CommandExecutor, CommandSender, PluginCommand
 };
@@ -38,6 +39,9 @@ class DustBin extends PluginBase implements CommandExecutor{
 
 	public function onLoad() : void{
 		self::$instance = $this;
+
+		//Check latest version
+		$this->getServer()->getAsyncPool()->submitTask(new CheckUpdateAsyncTask());
 	}
 
 	public function onEnable() : void{
