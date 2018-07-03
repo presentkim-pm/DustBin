@@ -30,9 +30,7 @@ use pocketmine\lang\BaseLang;
 use pocketmine\plugin\Plugin;
 
 class PluginLang extends BaseLang{
-	/**
-	 * @var Plugin
-	 */
+	/** @var Plugin */
 	private $plugin;
 
 	/**
