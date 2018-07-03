@@ -1,14 +1,14 @@
 ---
-name:             DustBin
-main:             kim\present\dustbin\DustBin
-version:          1.1.4
-api:              [3.0.0, 3.0.0-ALPHA12, 4.0.0]
-author:           PresentKim
-website:          https://github.com/PresentKim/DustBin-PMMP
-description:      A plugin add dustbin
+name: DustBin
+main: kim\present\dustbin\DustBin
+version: 1.1.4
+api: [3.0.0, 3.0.0-ALPHA12, 4.0.0]
+author: PresentKim
+website: https://github.com/PresentKim/DustBin-PMMP
+description: Put garbage in the dustbin!
 
 permissions:
   dustbin.cmd:
-    description:  DustBin main command
-    default:      true
+    description: DustBin main command
+    default: true
 ...
