@@ -34,7 +34,7 @@ class DustBinInventory extends CustomInventory{
 
 		$this->nbt = new CompoundTag('', [
 			new StringTag('id', 'Chest'),
-			new StringTag('CustomName', DustBin::getInstance()->getLanguage()->translate('dustbin.name')),
+			new StringTag('CustomName', DustBin::getInstance()->getLanguage()->translateString("dustbin.name")),
 		]);
 	}
 

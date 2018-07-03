@@ -40,23 +40,27 @@ class DustBin extends PluginBase implements CommandExecutor{
 	}
 
 	public function onEnable() : void{
-		$dataFolder = $this->getDataFolder();
-		if(!file_exists($dataFolder)){
-			mkdir($dataFolder, 0777, true);
-		}
-		$this->language = new PluginLang($this);
+		//Save default resources
+		$this->saveResource("lang/eng/lang.ini", false);
+		$this->saveResource("lang/kor/lang.ini", false);
+		$this->saveResource("lang/language.list", false);
 
-		if($this->command !== null){
-			$this->getServer()->getCommandMap()->unregister($this->command);
-		}
-		$this->command = new PluginCommand($this->language->translate('commands.dustbin'), $this);
-		$this->command->setPermission('dustbin.cmd');
-		$this->command->setDescription($this->language->translate('commands.dustbin.description'));
-		$this->command->setUsage($this->language->translate('commands.dustbin.usage'));
-		if(is_array($aliases = $this->language->getArray('commands.dustbin.aliases'))){
-			$this->command->setAliases($aliases);
-		}
-		$this->getServer()->getCommandMap()->register('dustbin', $this->command);
+		//Load config file
+		$this->saveDefaultConfig();
+		$this->reloadConfig();
+
+		//Load language file
+		$config = $this->getConfig();
+		$this->language = new PluginLang($this, $config->getNested("settings.language"));
+		$this->getLogger()->info($this->language->translateString("language.selected", [$this->language->getName(), $this->language->getLang()]));
+
+		//Register main command
+		$this->command = new PluginCommand($config->getNested("command.name"), $this);
+		$this->command->setPermission("dustbin.cmd");
+		$this->command->setAliases($config->getNested("command.aliases"));
+		$this->command->setUsage($this->language->translateString("commands.dustbin.usage"));
+		$this->command->setDescription($this->language->translateString("commands.dustbin.description"));
+		$this->getServer()->getCommandMap()->register($this->getName(), $this->command);
 	}
 
 	/**
@@ -71,9 +75,29 @@ class DustBin extends PluginBase implements CommandExecutor{
 		if($sender instanceof Player){
 			$sender->addWindow(new DustBinInventory());
 		}else{
-			$sender->sendMessage($this->language->translate('commands.generic.onlyPlayer'));
+			$sender->sendMessage($this->language->translateString("commands.generic.onlyPlayer"));
 		}
 		return true;
+	}
+
+	/**
+	 * @Override for multilingual support of the config file
+	 *
+	 * @return bool
+	 */
+	public function saveDefaultConfig() : bool{
+		$resource = $this->getResource("lang/{$this->getServer()->getLanguage()->getLang()}/config.yml");
+		if($resource === null){
+			$resource = $this->getResource("lang/" . PluginLang::FALLBACK_LANGUAGE . "/config.yml");
+		}
+
+		if(!file_exists($configFile = $this->getDataFolder() . "config.yml")){
+			$ret = stream_copy_to_stream($resource, $fp = fopen($configFile, "wb")) > 0;
+			fclose($fp);
+			fclose($resource);
+			return $ret;
+		}
+		return false;
 	}
 
 	/**
@@ -81,17 +105,5 @@ class DustBin extends PluginBase implements CommandExecutor{
 	 */
 	public function getLanguage() : PluginLang{
 		return $this->language;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getSourceFolder() : string{
-		$pharPath = \Phar::running();
-		if(empty($pharPath)){
-			return dirname(__FILE__, 4) . DIRECTORY_SEPARATOR;
-		}else{
-			return $pharPath . DIRECTORY_SEPARATOR;
-		}
 	}
 }
