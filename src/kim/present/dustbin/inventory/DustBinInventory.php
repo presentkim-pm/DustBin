@@ -32,9 +32,9 @@ class DustBinInventory extends CustomInventory{
 	public function __construct(){
 		parent::__construct(new Vector3(), [], $this->getDefaultSize(), null);
 
-		$this->nbt = new CompoundTag('', [
-			new StringTag('id', 'Chest'),
-			new StringTag('CustomName', DustBin::getInstance()->getLanguage()->translateString("dustbin.name")),
+		$this->nbt = new CompoundTag("", [
+			new StringTag("id", "Chest"),
+			new StringTag("CustomName", DustBin::getInstance()->getLanguage()->translateString("dustbin.name")),
 		]);
 	}
 
@@ -58,9 +58,9 @@ class DustBinInventory extends CustomInventory{
 		$who->sendDataPacket($pk);
 
 
-		$this->nbt->setInt('x', $this->holder->x);
-		$this->nbt->setInt('y', $this->holder->y);
-		$this->nbt->setInt('z', $this->holder->z);
+		$this->nbt->setInt("x", $this->holder->x);
+		$this->nbt->setInt("y", $this->holder->y);
+		$this->nbt->setInt("z", $this->holder->z);
 
 		$pk = new BlockEntityDataPacket();
 		$pk->x = $this->holder->x;
