@@ -19,3 +19,9 @@ command:
   #Aliases of main command
   #You can add, replace, or remove them as you like
   aliases: ["db", "trash"]
+
+
+permission:
+  #Permission of main command
+  #You can change this to be what you want
+  main: "true"

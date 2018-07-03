@@ -9,6 +9,7 @@ use kim\present\dustbin\lang\PluginLang;
 use pocketmine\command\{
 	Command, CommandExecutor, CommandSender, PluginCommand
 };
+use pocketmine\permission\Permission;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 
@@ -61,6 +62,13 @@ class DustBin extends PluginBase implements CommandExecutor{
 		$this->command->setUsage($this->language->translateString("commands.dustbin.usage"));
 		$this->command->setDescription($this->language->translateString("commands.dustbin.description"));
 		$this->getServer()->getCommandMap()->register($this->getName(), $this->command);
+
+		//Load permission's default value from config
+		$permissions = $this->getServer()->getPluginManager()->getPermissions();
+		$defaultValue = $config->getNested("permission.main");
+		if($defaultValue !== null){
+			$permissions["dustbin.cmd"]->setDefault(Permission::getByName($config->getNested("permission.main")));
+		}
 	}
 
 	/**
