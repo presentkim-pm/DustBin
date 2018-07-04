@@ -37,9 +37,7 @@ use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 
 class DustBin extends PluginBase implements CommandExecutor{
-	/**
-	 * @var DustBin
-	 */
+	/** @var DustBin */
 	private static $instance = null;
 
 	/**
@@ -49,24 +47,26 @@ class DustBin extends PluginBase implements CommandExecutor{
 		return self::$instance;
 	}
 
-	/**
-	 * @var PluginLang
-	 */
+	/** @var PluginLang */
 	private $language;
 
-	/**
-	 * @var PluginCommand
-	 */
+	/** @var PluginCommand */
 	private $command;
 
-	public function onLoad() : void{
+	/**
+	 * Called when the plugin is loaded, before calling onEnable()
+	 */
+	protected function onLoad() : void{
 		self::$instance = $this;
 
 		//Check latest version
 		$this->getServer()->getAsyncPool()->submitTask(new CheckUpdateAsyncTask());
 	}
 
-	public function onEnable() : void{
+	/**
+	 * Called when the plugin is enabled
+	 */
+	protected function onEnable() : void{
 		//Save default resources
 		$this->saveResource("lang/eng/lang.ini", false);
 		$this->saveResource("lang/kor/lang.ini", false);

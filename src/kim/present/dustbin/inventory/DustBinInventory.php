@@ -46,9 +46,7 @@ use pocketmine\Player;
 use pocketmine\tile\Spawnable;
 
 class DustBinInventory extends CustomInventory{
-	/**
-	 * @var CompoundTag
-	 */
+	/** @var CompoundTag */
 	private $nbt;
 
 	public function __construct(){
