@@ -7,9 +7,6 @@ settings:
   #Available: eng, kor
   language: "eng"
 
-  #Choose whether to allow open the reward box one time
-  onetime-reward: false
-
 
 command:
   #Name of main command

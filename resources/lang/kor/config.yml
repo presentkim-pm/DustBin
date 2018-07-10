@@ -7,9 +7,6 @@ settings:
   #가능한 언어: eng, kor
   language: "kor"
 
-  #보상 상자를 한번만 열 수 있게 할지 여부를 선택
-  onetime-reward: false
-
 
 command:
   #메인 명령어의 이름
