@@ -58,9 +58,6 @@ class DustBin extends PluginBase implements CommandExecutor{
 	 */
 	public function onLoad() : void{
 		self::$instance = $this;
-
-		//Check latest version
-		$this->getServer()->getAsyncPool()->submitTask(new CheckUpdateAsyncTask());
 	}
 
 	/**
@@ -75,9 +72,14 @@ class DustBin extends PluginBase implements CommandExecutor{
 		//Load config file
 		$this->saveDefaultConfig();
 		$this->reloadConfig();
+		$config = $this->getConfig();
+
+		//Check latest version
+		if($config->getNested("settings.update-check", false)){
+			$this->getServer()->getAsyncPool()->submitTask(new CheckUpdateAsyncTask());
+		}
 
 		//Load language file
-		$config = $this->getConfig();
 		$this->language = new PluginLang($this, $config->getNested("settings.language"));
 		$this->getLogger()->info($this->language->translateString("language.selected", [$this->language->getName(), $this->language->getLang()]));
 

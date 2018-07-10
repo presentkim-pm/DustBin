@@ -23,6 +23,8 @@ It is a dustbin to open anytime and anywhere.
   - [x] in `config.yml` file  
 - [x] Configure the permission of command  
   - [x] in `config.yml` file  
+- [x] Configure the whether the update is check (default "false")
+  - [x] in `config.yml` file  
   
 The configuration files is created when the plugin is enabled.  
 The configuration files is loaded  when the plugin is enabled.  
