@@ -36,26 +36,20 @@ use pocketmine\inventory\{
 use pocketmine\math\Vector3;
 use pocketmine\nbt\NetworkLittleEndianNBTStream;
 use pocketmine\nbt\tag\{
-	CompoundTag, StringTag
+	CompoundTag, IntTag, StringTag
 };
 use pocketmine\network\mcpe\protocol\{
 	BlockEntityDataPacket, ContainerOpenPacket, UpdateBlockPacket
 };
 use pocketmine\network\mcpe\protocol\types\WindowTypes;
 use pocketmine\Player;
-use pocketmine\tile\Spawnable;
+use pocketmine\tile\{
+	Chest, Spawnable, Tile
+};
 
 class DustBinInventory extends CustomInventory{
-	/** @var CompoundTag */
-	private $nbt;
-
 	public function __construct(){
 		parent::__construct(new Vector3(), [], $this->getDefaultSize(), null);
-
-		$this->nbt = new CompoundTag("", [
-			new StringTag("id", "Chest"),
-			new StringTag("CustomName", DustBin::getInstance()->getLanguage()->translateString("dustbin.name")),
-		]);
 	}
 
 	/**
@@ -78,15 +72,17 @@ class DustBinInventory extends CustomInventory{
 		$who->sendDataPacket($pk);
 
 
-		$this->nbt->setInt("x", $this->holder->x);
-		$this->nbt->setInt("y", $this->holder->y);
-		$this->nbt->setInt("z", $this->holder->z);
-
 		$pk = new BlockEntityDataPacket();
 		$pk->x = $this->holder->x;
 		$pk->y = $this->holder->y;
 		$pk->z = $this->holder->z;
-		$pk->namedtag = (new NetworkLittleEndianNBTStream())->write($this->nbt);
+		$pk->namedtag = (new NetworkLittleEndianNBTStream())->write(new CompoundTag("", [
+			new StringTag(Tile::TAG_ID, Tile::CHEST),
+			new StringTag(Chest::TAG_CUSTOM_NAME, DustBin::getInstance()->getLanguage()->translateString("dustbin.name")),
+			new IntTag(Tile::TAG_X, $this->holder->x),
+			new IntTag(Tile::TAG_Y, $this->holder->y),
+			new IntTag(Tile::TAG_Z, $this->holder->z)
+		]));
 		$who->sendDataPacket($pk);
 
 
