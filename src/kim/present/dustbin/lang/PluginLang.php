@@ -27,20 +27,20 @@ declare(strict_types=1);
 namespace kim\present\dustbin\lang;
 
 use pocketmine\lang\BaseLang;
-use pocketmine\plugin\Plugin;
+use pocketmine\plugin\PluginBase;
 
 class PluginLang extends BaseLang{
-	/** @var Plugin */
+	/** @var PluginBase */
 	private $plugin;
 
 	/**
 	 * @noinspection PhpMissingParentConstructorInspection
 	 * PluginLang constructor.
 	 *
-	 * @param Plugin $plugin
-	 * @param string $lang
+	 * @param PluginBase $plugin
+	 * @param string     $lang
 	 */
-	public function __construct(Plugin $plugin, string $lang){
+	public function __construct(PluginBase $plugin, string $lang){
 		$this->langName = strtolower($lang);
 		$this->plugin = $plugin;
 
