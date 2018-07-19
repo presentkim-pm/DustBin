@@ -31,7 +31,7 @@ use pocketmine\block\{
 	Block, BlockFactory
 };
 use pocketmine\inventory\{
-	BaseInventory, CustomInventory
+	CustomInventory
 };
 use pocketmine\math\Vector3;
 use pocketmine\nbt\NetworkLittleEndianNBTStream;
@@ -39,7 +39,7 @@ use pocketmine\nbt\tag\{
 	CompoundTag, IntTag, StringTag
 };
 use pocketmine\network\mcpe\protocol\{
-	BlockEntityDataPacket, ContainerOpenPacket, UpdateBlockPacket
+	BlockEntityDataPacket, UpdateBlockPacket
 };
 use pocketmine\network\mcpe\protocol\types\WindowTypes;
 use pocketmine\Player;
@@ -56,8 +56,6 @@ class DustBinInventory extends CustomInventory{
 	 * @param Player $who
 	 */
 	public function onOpen(Player $who) : void{
-		BaseInventory::onOpen($who);
-
 		$this->holder = $who->subtract(0, 3, 0)->floor();
 		if($this->holder->y < 0){
 			$this->holder->y = 0;
@@ -85,25 +83,13 @@ class DustBinInventory extends CustomInventory{
 		]));
 		$who->sendDataPacket($pk);
 
-
-		$pk = new ContainerOpenPacket();
-		$pk->type = WindowTypes::CONTAINER;
-		$pk->entityUniqueId = -1;
-		$pk->x = $this->holder->x;
-		$pk->y = $this->holder->y;
-		$pk->z = $this->holder->z;
-		$pk->windowId = $who->getWindowId($this);
-		$who->sendDataPacket($pk);
-
-		$this->sendContents($who);
+		parent::onOpen($who);
 	}
 
 	/**
 	 * @param Player $who
 	 */
 	public function onClose(Player $who) : void{
-		BaseInventory::onClose($who);
-
 		$block = $who->getLevel()->getBlock($this->holder);
 
 		$pk = new UpdateBlockPacket();
@@ -119,6 +105,8 @@ class DustBinInventory extends CustomInventory{
 			$who->sendDataPacket($tile->createSpawnPacket());
 		}
 		$this->clearAll();
+
+		parent::onClose($who);
 	}
 
 	/**
