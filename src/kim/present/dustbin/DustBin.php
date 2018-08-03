@@ -32,7 +32,9 @@ use kim\present\dustbin\task\CheckUpdateAsyncTask;
 use pocketmine\command\{
 	Command, CommandExecutor, CommandSender, PluginCommand
 };
-use pocketmine\permission\Permission;
+use pocketmine\permission\{
+	Permission, PermissionManager
+};
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 
@@ -92,7 +94,7 @@ class DustBin extends PluginBase implements CommandExecutor{
 		$this->getServer()->getCommandMap()->register($this->getName(), $this->command);
 
 		//Load permission's default value from config
-		$permissions = $this->getServer()->getPluginManager()->getPermissions();
+		$permissions = PermissionManager::getInstance()->getPermissions();
 		$defaultValue = $config->getNested("permission.main");
 		if($defaultValue !== null){
 			$permissions["dustbin.cmd"]->setDefault(Permission::getByName($config->getNested("permission.main")));
