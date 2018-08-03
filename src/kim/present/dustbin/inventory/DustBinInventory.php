@@ -76,7 +76,7 @@ class DustBinInventory extends CustomInventory{
 		$pk->z = $this->holder->z;
 		$pk->namedtag = (new NetworkLittleEndianNBTStream())->write(new CompoundTag("", [
 			new StringTag(Tile::TAG_ID, Tile::CHEST),
-			new StringTag(Chest::TAG_CUSTOM_NAME, DustBin::getInstance()->getLanguage()->translateString("dustbin.name")),
+			new StringTag(Chest::TAG_CUSTOM_NAME, DustBin::getInstance()->getLanguage()->translate("dustbin.name")),
 			new IntTag(Tile::TAG_X, $this->holder->x),
 			new IntTag(Tile::TAG_Y, $this->holder->y),
 			new IntTag(Tile::TAG_Z, $this->holder->z)
