@@ -4,7 +4,6 @@ main: kim\present\dustbin\DustBin
 version: 2.1.3
 api: [3.0.0, 3.0.0-ALPHA12, 4.0.0]
 author: PresentKim
-website: https://github.com/PresentKim/DustBin-PMMP
 description: Put garbage in the dustbin!
 
 permissions:
