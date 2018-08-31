@@ -30,7 +30,7 @@ use kim\present\dustbin\inventory\DustBinInventory;
 use kim\present\dustbin\lang\PluginLang;
 use kim\present\dustbin\task\CheckUpdateAsyncTask;
 use pocketmine\command\{
-	Command, CommandExecutor, CommandSender, PluginCommand
+	Command, CommandSender, PluginCommand
 };
 use pocketmine\permission\{
 	Permission, PermissionManager
@@ -38,7 +38,7 @@ use pocketmine\permission\{
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 
-class DustBin extends PluginBase implements CommandExecutor{
+class DustBin extends PluginBase{
 	/** @var DustBin */
 	private static $instance = null;
 
