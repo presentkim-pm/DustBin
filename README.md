@@ -1,9 +1,9 @@
 # <img src="https://rawgit.com/PresentKim/SVG-files/master/plugin-icons/dustbin.svg" height="50" width="50"> DustBin  
 __A plugin for [PMMP](https://pmmp.io) :: Put garbage in the dustbin!__  
   
-[![license](https://img.shields.io/github/license/PresentKim/DustBin-PMMP.svg?label=License)](../blob/master/LICENSE)
-[![release](https://img.shields.io/github/release/PresentKim/DustBin-PMMP.svg?label=Release)](../releases/latest)
-[![download](https://img.shields.io/github/downloads/PresentKim/DustBin-PMMP/total.svg?label=Download)](../releases/latest)
+[![license](https://img.shields.io/github/license/organization/DustBin-PMMP.svg?label=License)](../blob/master/LICENSE)
+[![release](https://img.shields.io/github/release/organization/DustBin-PMMP.svg?label=Release)](../releases/latest)
+[![download](https://img.shields.io/github/downloads/organization/DustBin-PMMP/total.svg?label=Download)](../releases/latest)
 [![Build status](https://ci.appveyor.com/api/projects/status/xd18ryl4li9rc11m/branch/master?svg=true)](https://ci.appveyor.com/project/PresentKim/dustbin-pmmp/branch/master)
   
 ## What is this?   
